@@ -1,7 +1,7 @@
 import { http } from "@/utils/http";
 
 export type UserResult = {
-  success: boolean;
+  code: number;
   data: {
     /** 头像 */
     avatar: string;
@@ -20,6 +20,7 @@ export type UserResult = {
     /** `accessToken`的过期时间（格式'xxxx/xx/xx xx:xx:xx'） */
     expires: Date;
   };
+  message: string;
 };
 
 export type RefreshTokenResult = {
@@ -36,7 +37,7 @@ export type RefreshTokenResult = {
 
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<UserResult>("post", "/login", { data });
+  return http.request<UserResult>("post", "/api/auth/login", { data });
 };
 
 /** 刷新`token` */
